@@ -20,10 +20,8 @@ st.set_page_config(
 # Custom CSS for aesthetic navigation and styling
 st.markdown("""
 <style>
-    /* Main app background */
     .main {
         padding: 0rem 1rem;
-        background-color: #f8fafc;
     }
     
     /* Hide default sidebar */
@@ -33,21 +31,22 @@ st.markdown("""
     
     /* Navigation bar styling */
     .nav-container {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem 2rem;
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        padding: 1rem 2rem;
         border-radius: 15px;
         margin-bottom: 2rem;
-        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-        border: 2px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(102, 126, 234, 0.2);
     }
     
     .nav-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 800;
-        color: white;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         margin-bottom: 1rem;
         text-align: center;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     .nav-tabs {
@@ -57,161 +56,105 @@ st.markdown("""
         justify-content: center;
     }
     
-    /* Navigation buttons */
     .stButton > button {
-        background: rgba(255, 255, 255, 0.9) !important;
-        border: 2px solid rgba(255, 255, 255, 0.5) !important;
-        border-radius: 10px !important;
-        padding: 0.6rem 1.5rem !important;
-        color: #1e293b !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.6rem 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 600;
+        transition: all 0.3s ease;
     }
     
     .stButton > button:hover {
-        background: white !important;
-        border-color: white !important;
-        color: #667eea !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        background: rgba(102, 126, 234, 0.2);
+        border-color: rgba(102, 126, 234, 0.5);
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    /* Dashboard tiles */
+    .dashboard-tile {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+        padding: 1.5rem;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .dashboard-tile:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        border-color: rgba(102, 126, 234, 0.5);
+    }
+    
+    .tile-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .tile-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .tile-label {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        margin-top: 0.5rem;
+    }
+    
+    .tile-sublabel {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 0.25rem;
     }
     
     /* Real-time clock */
     .clock-container {
         text-align: center;
         padding: 1rem;
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
         margin-bottom: 1rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     
     .clock-time {
         font-size: 2rem;
         font-weight: 700;
-        color: #1e293b;
-        text-shadow: 1px 1px 2px rgba(102, 126, 234, 0.2);
+        color: #667eea;
     }
     
     .clock-date {
         font-size: 1rem;
-        color: #475569;
-        font-weight: 500;
+        color: rgba(255, 255, 255, 0.7);
     }
     
-    /* Section headers - now dark and visible */
+    /* Section headers */
     h1, h2, h3 {
-        color: #1e293b !important;
-        font-weight: 700 !important;
+        color: #667eea;
     }
     
-    /* Main text color */
-    .main p, .main label, .main span {
-        color: #1e293b !important;
-    }
-    
-    /* Metric styling */
-    [data-testid="stMetricValue"] {
-        color: #667eea !important;
-        font-size: 2rem !important;
-        font-weight: 700 !important;
-    }
-    
-    [data-testid="stMetricLabel"] {
-        color: #475569 !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Card/Container styling */
-    .element-container, .stMarkdown {
-        color: #1e293b !important;
-    }
-    
-    /* Input fields */
-    .stTextInput input, .stTextArea textarea, .stSelectbox select, .stNumberInput input {
-        background-color: white !important;
-        color: #1e293b !important;
-        border: 2px solid #e2e8f0 !important;
-        border-radius: 8px !important;
-    }
-    
-    .stTextInput input:focus, .stTextArea textarea:focus, .stSelectbox select:focus, .stNumberInput input:focus {
-        border-color: #667eea !important;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
-    }
-    
-    /* Expander styling */
-    .streamlit-expanderHeader {
-        background-color: white !important;
-        color: #1e293b !important;
-        border: 2px solid #e2e8f0 !important;
-        border-radius: 8px !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Success/Error/Info messages */
-    .stSuccess {
-        background-color: #d1fae5 !important;
-        color: #065f46 !important;
-        border-left: 4px solid #10b981 !important;
-    }
-    
-    .stError {
-        background-color: #fee2e2 !important;
-        color: #991b1b !important;
-        border-left: 4px solid #ef4444 !important;
-    }
-    
-    .stInfo {
-        background-color: #dbeafe !important;
-        color: #1e40af !important;
-        border-left: 4px solid #3b82f6 !important;
-    }
-    
-    .stWarning {
-        background-color: #fef3c7 !important;
-        color: #92400e !important;
-        border-left: 4px solid #f59e0b !important;
-    }
-    
-    /* Checkbox styling */
-    .stCheckbox label {
-        color: #1e293b !important;
-        font-weight: 500 !important;
-    }
-    
-    /* Dataframe styling */
-    .dataframe {
-        color: #1e293b !important;
-    }
-    
-    /* Tab styling */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background-color: #f1f5f9;
-        padding: 0.5rem;
+    /* Card styling */
+    .info-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
         border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 1rem;
     }
     
-    .stTabs [data-baseweb="tab"] {
-        background-color: white;
-        color: #475569;
-        border-radius: 8px;
-        padding: 0.75rem 1.5rem;
-        font-weight: 600;
-        border: 2px solid #e2e8f0;
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white !important;
-        border-color: #667eea;
-    }
-    
-    /* Caption text */
-    .caption, small {
-        color: #64748b !important;
+    /* Table styling */
+    .dataframe {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -680,111 +623,50 @@ def show_dashboard():
     total_goals = len([g for g in st.session_state.goals if not g.get('completed', False)])
     today_tasks = len([t for t in st.session_state.daily_tasks if not t.get('completed', False)])
     month_tasks = len([t for t in st.session_state.monthly_tasks if not t.get('completed', False)])
-    low_stock = len([i for i, d in st.session_state.inventory.items() if d['quantity'] < d['threshold']])
-    interviews = len([j for j in st.session_state.job_applications if j.get('status') == 'Interview'])
     
     st.markdown("### 📊 Quick Overview")
-    st.markdown("*Click any tile to navigate to that section*")
     
     # Row 1: Main metrics
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        st.markdown(f"""
-        <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); 
-                    border-radius: 15px; border: 2px solid #3b82f6; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);'>
-            <div style='font-size: 3rem; margin-bottom: 0.5rem;'>📊</div>
-            <div style='font-size: 2.5rem; font-weight: 800; color: #1e40af; margin-bottom: 0.5rem;'>{total_jobs}</div>
-            <div style='font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem;'>Job Applications</div>
-            <div style='font-size: 0.85rem; color: #475569;'>{interviews} interviews</div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("View Jobs", key="tile_jobs_btn", use_container_width=True):
+        if st.button(f"📊\n\n{total_jobs}\n\nJob Applications\n\n{len([j for j in st.session_state.job_applications if j.get('status') == 'Interview'])} interviews", 
+                     key="tile_jobs", use_container_width=True):
             navigate_to('Jobs')
     
     with col2:
-        st.markdown(f"""
-        <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); 
-                    border-radius: 15px; border: 2px solid #ec4899; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);'>
-            <div style='font-size: 3rem; margin-bottom: 0.5rem;'>📚</div>
-            <div style='font-size: 2.5rem; font-weight: 800; color: #be185d; margin-bottom: 0.5rem;'>{total_vocab}</div>
-            <div style='font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem;'>Vocabulary Words</div>
-            <div style='font-size: 0.85rem; color: #475569;'>Total learned</div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("View Vocabulary", key="tile_vocab_btn", use_container_width=True):
+        if st.button(f"📚\n\n{total_vocab}\n\nVocabulary Words\n\nTotal learned", 
+                     key="tile_vocab", use_container_width=True):
             navigate_to('Reading')
     
     with col3:
-        st.markdown(f"""
-        <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); 
-                    border-radius: 15px; border: 2px solid #f59e0b; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);'>
-            <div style='font-size: 3rem; margin-bottom: 0.5rem;'>🛒</div>
-            <div style='font-size: 2.5rem; font-weight: 800; color: #92400e; margin-bottom: 0.5rem;'>{total_grocery}</div>
-            <div style='font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem;'>Grocery Items</div>
-            <div style='font-size: 0.85rem; color: #475569;'>To purchase</div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("View Grocery List", key="tile_grocery_btn", use_container_width=True):
+        if st.button(f"🛒\n\n{total_grocery}\n\nGrocery Items\n\nTo purchase", 
+                     key="tile_grocery", use_container_width=True):
             st.session_state.show_grocery = True
             st.rerun()
     
     with col4:
-        st.markdown(f"""
-        <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); 
-                    border-radius: 15px; border: 2px solid #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);'>
-            <div style='font-size: 3rem; margin-bottom: 0.5rem;'>🎯</div>
-            <div style='font-size: 2.5rem; font-weight: 800; color: #065f46; margin-bottom: 0.5rem;'>{total_goals}</div>
-            <div style='font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem;'>Active Goals</div>
-            <div style='font-size: 0.85rem; color: #475569;'>In progress</div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("View Goals", key="tile_goals_btn", use_container_width=True):
+        if st.button(f"🎯\n\n{total_goals}\n\nActive Goals\n\nIn progress", 
+                     key="tile_goals", use_container_width=True):
             st.session_state.show_goals = True
             st.rerun()
-    
-    st.markdown("<br>", unsafe_allow_html=True)
     
     # Row 2: Inventory and Tasks
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown(f"""
-        <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); 
-                    border-radius: 15px; border: 2px solid #6366f1; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);'>
-            <div style='font-size: 3rem; margin-bottom: 0.5rem;'>📦</div>
-            <div style='font-size: 2.5rem; font-weight: 800; color: #3730a3; margin-bottom: 0.5rem;'>{total_inventory}</div>
-            <div style='font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem;'>Inventory Items</div>
-            <div style='font-size: 0.85rem; color: #475569;'>{low_stock} low stock</div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("Manage Inventory", key="tile_inventory_btn", use_container_width=True):
+        if st.button(f"📦\n\n{total_inventory}\n\nInventory Items\n\n{len([i for i, d in st.session_state.inventory.items() if d['quantity'] < d['threshold']])} low stock", 
+                     key="tile_inventory", use_container_width=True):
             navigate_to('Inventory')
     
     with col2:
-        st.markdown(f"""
-        <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%); 
-                    border-radius: 15px; border: 2px solid #14b8a6; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);'>
-            <div style='font-size: 3rem; margin-bottom: 0.5rem;'>✅</div>
-            <div style='font-size: 2.5rem; font-weight: 800; color: #0f766e; margin-bottom: 0.5rem;'>{today_tasks}</div>
-            <div style='font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem;'>Tasks for Today</div>
-            <div style='font-size: 0.85rem; color: #475569;'>Pending</div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("View Tasks", key="tile_tasks_day_btn", use_container_width=True):
+        if st.button(f"✅\n\n{today_tasks}\n\nTasks for Today\n\nPending", 
+                     key="tile_tasks_day", use_container_width=True):
             navigate_to('Schedule')
     
     with col3:
-        st.markdown(f"""
-        <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); 
-                    border-radius: 15px; border: 2px solid #8b5cf6; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);'>
-            <div style='font-size: 3rem; margin-bottom: 0.5rem;'>📅</div>
-            <div style='font-size: 2.5rem; font-weight: 800; color: #5b21b6; margin-bottom: 0.5rem;'>{month_tasks}</div>
-            <div style='font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem;'>Tasks for Month</div>
-            <div style='font-size: 0.85rem; color: #475569;'>Pending</div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("View Monthly Tasks", key="tile_tasks_month_btn", use_container_width=True):
+        if st.button(f"📅\n\n{month_tasks}\n\nTasks for Month\n\nPending", 
+                     key="tile_tasks_month", use_container_width=True):
             navigate_to('Schedule')
     
     st.markdown("---")

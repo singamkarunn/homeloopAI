@@ -1,7 +1,32 @@
 {
-  "a": 5,
-  "b": 6,
-  "c": 10,
-  "d": 8,
-  "e": 10
+  "eggs": {
+    "quantity": 5,
+    "unit": "quantity",
+    "threshold": 3,
+    "name": "Eggs"
+  },
+  "bread": {
+    "quantity": 6,
+    "unit": "quantity",
+    "threshold": 4,
+    "name": "Bread"
+  },
+  "rice": {
+    "quantity": 10,
+    "unit": "lbs",
+    "threshold": 5,
+    "name": "Rice"
+  },
+  "chicken": {
+    "quantity": 8,
+    "unit": "lbs",
+    "threshold": 4,
+    "name": "Chicken"
+  },
+  "vegetables": {
+    "quantity": 10,
+    "unit": "quantity",
+    "threshold": 6,
+    "name": "Vegetables"
+  }
 }

@@ -1,0 +1,38 @@
+{
+  "alpha": {
+    "name": "Alpha Breakfast",
+    "ingredients": {
+      "eggs": 1,
+      "bread": 1,
+      "vegetables": 3
+    }
+  },
+  "beta": {
+    "name": "Beta Lunch",
+    "ingredients": {
+      "vegetables": 2
+    }
+  },
+  "gamma": {
+    "name": "Gamma Dinner",
+    "ingredients": {
+      "rice": 1,
+      "chicken": 2
+    }
+  },
+  "omega": {
+    "name": "Omega Snack",
+    "ingredients": {
+      "eggs": 2,
+      "bread": 1
+    }
+  },
+  "delta": {
+    "name": "Delta Meal",
+    "ingredients": {
+      "rice": 2,
+      "chicken": 1,
+      "vegetables": 1
+    }
+  }
+}
